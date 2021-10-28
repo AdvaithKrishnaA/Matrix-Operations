@@ -26,9 +26,9 @@ typedef struct
 int main()
 {
     FILE *fp;
-    fp=fopen("week15-ML1-input.txt","r");
+    fp=fopen("input.txt","r"); // takes a file as input
     int krow, kcol, knum;
-    fscanf(fp,"%d %d %d\n", &krow, &kcol, &knum);
+    fscanf(fp,"%d %d %d\n", &krow, &kcol, &knum); // first line of the input contains dimensions of the kernel matrix
     k **krnl = (k **)malloc(krow * sizeof(k *));
     for (int i = 0; i < krow; i++)
     {
@@ -38,11 +38,11 @@ int main()
     {
         for (int j = 0; j < kcol; j++)
         {
-            fscanf(fp,"%d %d %d\n", &krnl[i][j].kr, &krnl[i][j].kc, &krnl[i][j].kval);
+            fscanf(fp,"%d %d %d\n", &krnl[i][j].kr, &krnl[i][j].kc, &krnl[i][j].kval); // subsequent lines consist of the element data in the following format: row< >column< >value
         }
     }
     int irow, icol, inum;
-    fscanf(fp,"%d %d %d\n", &irow, &icol, &inum);
+    fscanf(fp,"%d %d %d\n", &irow, &icol, &inum); // next line of the input contains dimensions of the image matrix
     im **img = (im **)malloc(irow * sizeof(im *));
     for (int i = 0; i < irow; i++)
     {
@@ -52,11 +52,11 @@ int main()
     {
         for (int j = 0; j < icol; j++)
         {
-            fscanf(fp,"%d %d %d\n", &img[i][j].ir, &img[i][j].ic, &img[i][j].ival);
+            fscanf(fp,"%d %d %d\n", &img[i][j].ir, &img[i][j].ic, &img[i][j].ival); // subsequent lines consist of the element data in the following format: row< >column< >value
         }
     }
     c cnvlt[irow][icol];
-    int kcenterx = kcol / 2;
+    int kcenterx = kcol / 2; // initialising center value
     int kcentery = krow / 2;
     for (int i = 0; i < irow; i++)
     {
@@ -73,7 +73,7 @@ int main()
                     int jj = j + (n - kcenterx);
                     if (ii >= 0 && ii < irow && jj >= 0 && jj < icol)
                     {
-                        cnvlt[i][j].cval += img[ii][jj].ival * krnl[m][n].kval;
+                        cnvlt[i][j].cval += img[ii][jj].ival * krnl[m][n].kval; // convoluted matrix
                     }
                 }
             }
@@ -83,7 +83,7 @@ int main()
     {
         for (int j = 0; j < icol; j++)
         {
-            printf("%d ", cnvlt[i][j].cval);
+            printf("%d ", cnvlt[i][j].cval); // printing output
         }
         printf("\n");
     }
