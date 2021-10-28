@@ -1,10 +1,10 @@
+//import
 #include<stdio.h>
-
 
 int main()
 {
     int p, q, i, j;
-    printf("input no. of rows ");
+    printf("input no. of rows "); //matrix dimensions
     scanf("%d",&p);
     printf("\ninput no. of columns ");
     scanf("%d",&q);
@@ -19,7 +19,7 @@ int main()
     }
 
     i=0,j=0;
-    int maxPool[p/2][q/2];
+    int maxPool[p/2][q/2]; //initialising output matrix
 
     for(i=0;i<p;i+=2)
     {
@@ -28,7 +28,7 @@ int main()
             int max1 = (arr[i][j]>arr[i+1][j])?arr[i][j]:arr[i+1][j];
             int max2 = (arr[i][j+1]>arr[i+1][j+1])?arr[i][j+1]:arr[i+1][j+1];
 
-            maxPool[i/2][j/2] = (max1>max2)?max1:max2;
+            maxPool[i/2][j/2] = (max1>max2)?max1:max2; //maxpool operation
         }
     }
 
@@ -36,7 +36,7 @@ int main()
     {
         for(j=0;j<q/2;j++)
         {
-            printf("%d ", maxPool[i][j]);
+            printf("%d ", maxPool[i][j]); //output
         }
         printf("\n");
     }
